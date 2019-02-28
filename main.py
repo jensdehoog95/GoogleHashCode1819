@@ -5,17 +5,37 @@ from Process import get_slideshow
 
 input_folder = "inputfiles"
 output_folder = "outputfiles"
-filename = "a_example.txt"
+filename = "c_memorable_moments.txt"
 
 
 def main():
     collection = Collection()
     read_file(input_folder + "/" + filename, collection)
-    searchlength = 100
-    difference = 3
-    sort = 0
-    merge_type = 0
-    slideshow = get_slideshow(collection.get_array(),searchlength,difference,sort, merge_type)
+    best_searchlength = 100
+    best_difference = 3
+    best_sort = 0
+    best_merge_type = 0
+    best_score = 0
+    for searchlength in range(10, 500):
+        for difference in range(0, 30):
+            for sort in range(0, 3):
+                for merge_type in range(0,2):
+                    try:
+                        slideshow = get_slideshow(collection.get_array().copy(),searchlength,difference,sort, merge_type)
+                    except:
+                       continue
+
+                    score = slideshow.score()
+                    if(score>best_score):
+                        best_searchlength=searchlength
+                        best_difference=difference
+                        best_sort= sort
+                        best_merge_type=merge_type
+    print("search length" + str(best_searchlength))
+    print("diff"+str(best_difference))
+    print("sort"+str(best_sort))
+    print("merge_type"+str(best_merge_type))
+
     print(slideshow.score())
 
     slideshow.parse_output(output_folder + "/" + filename)
