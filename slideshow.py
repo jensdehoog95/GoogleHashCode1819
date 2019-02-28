@@ -26,9 +26,9 @@ class Slideshow():
 
                 tmp_photo = slide.photo2
                 if tmp_photo is not None:
-                    self._write_line(f, ' ' + tmp_photo.idx)
+                    self._write_line(f, ' ' + str(tmp_photo.idx))
 
-                self._write_line('\n')
+                self._write_line(f, '\n')
 
     def _get_num_slides(self):
         return len(self.slides)
