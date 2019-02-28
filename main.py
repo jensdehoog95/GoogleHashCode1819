@@ -5,7 +5,7 @@ from Process import get_slideshow
 
 input_folder = "inputfiles"
 output_folder = "outputfiles"
-filename = "e_shiny_selfies.txt"
+filename = "a_example.txt"
 
 
 def main():
