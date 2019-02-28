@@ -30,7 +30,7 @@ def setup_slideshow(slides, searchlength, difference):
     while len(slides)>0:
 
         best_slide = 0
-        best_difference = 10000
+        best_val = 10000
         for i in range(searchlength):
             if(i>=len(slides)):
                 break
@@ -39,9 +39,9 @@ def setup_slideshow(slides, searchlength, difference):
             # tags_equal = len(list(set(base_slide.tags) & set(slides[i].tags)))
             tags_size = len(slides[0].tags)
 
-            if tags_size / 2 - difference <= tags_equal <= tags_size / 2 + difference and best_difference<difference:
+            if tags_size / 2 - difference <= tags_equal <= tags_size / 2 + difference and abs(tags_size/2-tags_equal)<best_val :
                 best_slide = i
-                best_difference = difference
+                best_val = abs(tags_size/2-tags_equal)
         base_slide = slides.pop(best_slide)
         slideshow.add_slide(base_slide)
 
