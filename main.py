@@ -9,8 +9,11 @@ filename = "inputfiles/a_example.txt"
 def main():
     collection = Collection()
     read_file(filename, collection)
-
-    slideshow = get_slideshow(collection.get_array())
+    searchlength = 100
+    difference = 3
+    sort = 0
+    slideshow = get_slideshow(collection.get_array(),searchlength,difference,sort)
+    print(slideshow.score())
 
     slideshow.parse_output()
 
