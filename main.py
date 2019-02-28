@@ -3,7 +3,7 @@ from collection import Collection
 from slideshow import Slideshow
 from Process import get_slideshow
 
-filename = "a_example.txt"
+filename = "inputfiles/a_example.txt"
 
 
 def main():
