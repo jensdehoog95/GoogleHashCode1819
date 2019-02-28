@@ -9,15 +9,15 @@ def preprocess_pictures(pictures):
     slides.extend(merged_slides)
     for picture in horizontal_pictures:
         slides.append(Slide(picture))
-    return pictures
+    return slides
 
 
 def merge_vertical_pictures(vertical_pictures):
-    pictures = sort_pictures(vertical_pictures)
+    sort_pictures(vertical_pictures)
     merged_pictures = []
-    while len(pictures) > 1:
-        v1 = pictures.pop([0])
-        v2 = pictures.pop([-1])
+    while len(vertical_pictures) > 1:
+        v1 = vertical_pictures.pop(0)
+        v2 = vertical_pictures.pop(-1)
 
         slide = Slide(v1, v2)
         merged_pictures.append(slide)
@@ -25,8 +25,7 @@ def merge_vertical_pictures(vertical_pictures):
 
 
 def sort_pictures(vertical_pictures):
-    sorted_pictures = vertical_pictures.sort(key=lambda x: len(x.tags), reverse=True)
-    return sorted_pictures
+    vertical_pictures.sort(key=lambda x: len(x.tags), reverse=True)
 
 
 def remove_vertical_pictures(pictures):

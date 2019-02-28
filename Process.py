@@ -5,34 +5,32 @@ from MergeVertical import preprocess_pictures
 
 def get_slideshow(pictures):
     slides = preprocess_pictures(pictures)
-    sorted_slides = sort_slides(slides)
-    slideshow = setup_slideshow(sorted_slides)
+    sort_slides(slides)
+    slideshow = setup_slideshow(slides)
     return slideshow
 
 
 def sort_slides(slides):
-    sorted_slides = slides.sort(key=lambda x: len(x.tags), reverse=True)
-    return sorted_slides
+    slides.sort(key=lambda x: len(x.tags), reverse=True)
 
 
 def setup_slideshow(slides):
     slideshow = Slideshow()
     base_slide = slides.pop(0)
     slideshow.add_slide(base_slide)
-    while slides:
-        best_slide = 0
-        count = 0
-        for follow_slide in slides[1:-1]:
-            if count == 100:
-                base_slide = slides.pop(best_slide)
-                slideshow.add_slide(base_slide)
-                break
-            count += 1
+    while len(slides)>0:
 
-            tags_equal = len(slides[0].tags.intersection(follow_slide.tags))
+        best_slide = 0
+        for i in range(100):
+            if(i>=len(slides)):
+                break
+
+            tags_equal = len(list(set(base_slide.tags) & set(slides[i].tags)))
             tags_size = len(slides[0].tags)
 
             if tags_size / 2 - 3 <= tags_equal <= tags_size / 2 + 3:
-                best_slide = count
+                best_slide = i
+        base_slide = slides.pop(best_slide)
+        slideshow.add_slide(base_slide)
 
     return slideshow
