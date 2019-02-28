@@ -26,7 +26,7 @@ def merge_vertical_pictures(vertical_pictures):
 
 
 def sort_pictures(vertical_pictures):
-    sorted_pictures = vertical_pictures.sort(key=lambda x: x.tags.count, reverse=True)
+    sorted_pictures = vertical_pictures.sort(key=lambda x: len(x.tags), reverse=True)
     return sorted_pictures
 
 
