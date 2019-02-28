@@ -3,19 +3,21 @@ from collection import Collection
 from slideshow import Slideshow
 from Process import get_slideshow
 
-filename = "inputfiles/a_example.txt"
+input_folder = "inputfiles"
+output_folder = "outputfiles"
+filename = "e_shiny_selfies.txt"
 
 
 def main():
     collection = Collection()
-    read_file(filename, collection)
+    read_file(input_folder + "/" + filename, collection)
     searchlength = 100
     difference = 3
     sort = 0
     slideshow = get_slideshow(collection.get_array(),searchlength,difference,sort)
     print(slideshow.score())
 
-    slideshow.parse_output()
+    slideshow.parse_output(output_folder + "/" + filename)
 
     print("Done")
 
