@@ -39,10 +39,11 @@ class Slideshow():
     def score(self):
         score = 0
         for i in range(len(self.slides)-1):
-            union = len(set(self.slides[i].tags).union(self.slides[i+1].tags))
-            x = len(self.slides[i].tags) - union
-            y = len(self.slides[i+1].tags) - union
+            intersection = set(self.slides[i].tags).intersection(self.slides[i+1].tags)
+            # union = len(list(set(self.slides[i].tags) & set(self.slides[i+1].tags)))
+            x = len(self.slides[i].tags) - intersection
+            y = len(self.slides[i+1].tags) - intersection
 
-            minimum = min(union, min(x, y))
+            minimum = min(intersection, min(x, y))
             score += minimum
         return score
