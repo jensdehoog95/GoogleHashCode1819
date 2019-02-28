@@ -7,5 +7,7 @@ class Slide():
 
     def get_tags(self):
         tags=[]
-        return
+        tags.extend(self.photo1.tags)
+        tags.extend(self.photo2.tags)
+        return tags
 
