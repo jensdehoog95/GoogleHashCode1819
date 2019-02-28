@@ -5,4 +5,7 @@ class Slide():
         self.photo1 = photo1
         self.photo2 = photo2
 
+    def get_tags(self):
+        tags=[]
+        return
 
