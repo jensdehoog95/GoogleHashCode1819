@@ -2,16 +2,22 @@ from input_parser import read_file
 from collection import Collection
 from slideshow import Slideshow
 from Process import get_slideshow
+import sys
 from threading import Thread
 
 input_folder = "inputfiles"
 output_folder = "outputfiles"
+filename = "d_pet_pictures.txt"
 filename = "a_example.txt"
 
 
 def main():
+    global filename
+    input=input_folder+"/"+filename;
+    if len(sys.argv)>1 and sys.argv[1] is not None:
+        input = sys.argv[1]
     collection = Collection()
-    read_file(input_folder + "/" + filename, collection)
+    read_file(input, collection)
 
     tuples = []
     threads = []
