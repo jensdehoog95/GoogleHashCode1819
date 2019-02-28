@@ -39,7 +39,8 @@ class Slideshow():
     def score(self):
         score = 0
         for i in range(len(self.slides)-1):
-            intersection = set(self.slides[i].tags).intersection(self.slides[i+1].tags)
+            #t1 = self.slides[i].tags
+            intersection = len(set(self.slides[i].tags).intersection(self.slides[i+1].tags))
             # union = len(list(set(self.slides[i].tags) & set(self.slides[i+1].tags)))
             x = len(self.slides[i].tags) - intersection
             y = len(self.slides[i+1].tags) - intersection

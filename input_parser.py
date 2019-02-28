@@ -24,7 +24,7 @@ def _parse_photo(idx, line):
     num_tags = int(splitline[1])
     tags =[]
     for y in range(num_tags):
-        tag = Tag(splitline[2 + y]) # Index of tags in splitline starts at 2
+        tag = splitline[2 + y]
         tags.append(tag)
 
     photo = Photo(idx, tags, orientation)
