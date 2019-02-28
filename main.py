@@ -18,11 +18,14 @@ def main():
 
     for difference in range(0, 30):
         # difference_function(collection, tuples, difference)
-        thread = Thread(target=difference_function, args=(collection, tuples, difference))
+        thread = Thread(target=difference_function, args=(collection.get_array().copy(), tuples, difference,))
         threads.append(thread)
 
     for t in threads:
         t.start()
+
+    for t in threads:
+        t.join()
 
     best_tuple = get_best_tuple(tuples)
     print_tuple(best_tuple)
@@ -51,7 +54,7 @@ def difference_function(collection, tuples, difference):
         for sort in range(0, 3):
             for merge_type in range(0, 2):
                 try:
-                    slideshow = get_slideshow(collection.get_array().copy(),
+                    slideshow = get_slideshow(collection,
                                               searchlength, difference, sort,
                                               merge_type)
                 except:
