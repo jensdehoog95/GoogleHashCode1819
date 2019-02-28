@@ -10,8 +10,8 @@ class Slideshow():
     def add_slide(self, slide: Slide):
         self.slides.append(slide)
 
-    def parse_output(self):
-        with open(output_file, "w") as f:
+    def parse_output(self, filename):
+        with open(filename, "w") as f:
             num_slides = self._get_num_slides()
             self._write_line(f, str(num_slides) + '\n')
 
