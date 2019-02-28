@@ -7,8 +7,7 @@ from threading import Thread
 
 input_folder = "inputfiles"
 output_folder = "outputfiles"
-filename = "d_pet_pictures.txt"
-filename = "a_example.txt"
+filename = "e_shiny_selfies.txt"
 
 
 def main():
@@ -22,20 +21,17 @@ def main():
     tuples = []
     threads = []
 
-    for difference in range(0, 30):
-        # difference_function(collection, tuples, difference)
-        thread = Thread(target=difference_function, args=(collection, tuples, difference))
-        threads.append(thread)
-
-    for t in threads:
-        t.start()
-
-    best_tuple = get_best_tuple(tuples)
-    print_tuple(best_tuple)
-
-    slideshow = get_slideshow(collection.get_array().copy(),
-                              best_tuple[1], best_tuple[2], best_tuple[3],
-                              best_tuple[4])
+    slideshow = None
+    if input == "inputfiles/d_pet_pictures.txt":
+        slideshow = get_slideshow(collection.get_array().copy(),180,6,0,0)
+    elif input == "inputfiles/a_example.txt":
+        slideshow = get_slideshow(collection.get_array().copy(),100,3,0,0)
+    elif input == "inputfiles/c_memorable_moments.txt":
+        slideshow = get_slideshow(collection.get_array().copy(),10,9,0,0)
+    elif input == "inputfiles/e_shiny_selfies.txt":
+        slideshow = get_slideshow(collection.get_array().copy(),10,17,0,0)
+    else:
+        slideshow = get_slideshow(collection.get_array().copy(),100,6,0,0)
 
     print(slideshow.score())
 
@@ -53,7 +49,9 @@ def difference_function(collection, tuples, difference):
 
     best_tuple = ()
 
-    for searchlength in range(10, 500):
+    for searchlength in range(1, 120):
+        if(searchlength==15):
+            print(searchlength)
         for sort in range(0, 3):
             for merge_type in range(0, 2):
                 try:
