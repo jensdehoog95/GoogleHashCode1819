@@ -6,3 +6,6 @@ class Collection():
 
     def add_photo(self, photo: Photo):
         self.photos.append(photo)
+
+    def get_array(self):
+        return self.photos
