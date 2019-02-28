@@ -3,8 +3,7 @@ from photo import Photo
 
 
 def preprocess_pictures(pictures):
-    vertical_pictures = remove_vertical_pictures(pictures)
-    horizontal_pictures= pictures
+    vertical_pictures, horizontal_pictures = remove_vertical_pictures(pictures)
     merged_slides = merge_vertical_pictures(vertical_pictures)
     slides = []
     slides.extend(merged_slides)
@@ -32,7 +31,10 @@ def sort_pictures(vertical_pictures):
 
 def remove_vertical_pictures(pictures):
     vertical_pictures = []
-    for i in range(len(pictures)):
-        if pictures[i].orientation == "V":
-            vertical_pictures.append(pictures.pop(i))
-    return vertical_pictures
+    horizontal_pictures = []
+    while pictures:
+        if pictures[0].orientation == "V":
+            vertical_pictures.append(pictures.pop(0))
+        else:
+            horizontal_pictures.append(pictures.pop(0))
+    return vertical_pictures, horizontal_pictures
