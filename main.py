@@ -14,7 +14,8 @@ def main():
     searchlength = 100
     difference = 3
     sort = 0
-    slideshow = get_slideshow(collection.get_array(),searchlength,difference,sort)
+    merge_type = 0
+    slideshow = get_slideshow(collection.get_array(),searchlength,difference,sort, merge_type)
     print(slideshow.score())
 
     slideshow.parse_output(output_folder + "/" + filename)

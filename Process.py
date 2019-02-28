@@ -4,8 +4,8 @@ from MergeVertical import preprocess_pictures
 import random
 
 
-def get_slideshow(pictures, searchlength, difference, sort):
-    slides = preprocess_pictures(pictures)
+def get_slideshow(pictures, searchlength, difference, sort, merge_type):
+    slides = preprocess_pictures(pictures, merge_type)
     if sort==0:
         sort_slides(slides)
     if sort == 1:
@@ -34,7 +34,7 @@ def setup_slideshow(slides, searchlength, difference):
             if(i>=len(slides)):
                 break
 
-            tags_equal = len(list(set(base_slide.tags) & set(slides[i].tags)))
+            tags_equal = len(set(base_slide.tags).union(slides[i].tags))
             tags_size = len(slides[0].tags)
 
             if tags_size / 2 - difference <= tags_equal <= tags_size / 2 + difference:

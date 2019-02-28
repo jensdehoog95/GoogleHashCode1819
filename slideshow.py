@@ -39,7 +39,7 @@ class Slideshow():
     def score(self):
         score = 0
         for i in range(len(self.slides)-1):
-            union = len(list(set(self.slides[i].tags) & set(self.slides[i+1].tags)))
+            union = len(set(self.slides[i].tags).union(self.slides[i+1].tags))
             x = len(self.slides[i].tags) - union
             y = len(self.slides[i+1].tags) - union
 
