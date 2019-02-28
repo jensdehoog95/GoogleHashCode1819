@@ -3,12 +3,13 @@ from collection import Collection
 from slideshow import Slideshow
 from Process import get_slideshow
 import sys
-from threading import Thread
+# from threading import Thread
+import multiprocessing
+
 
 input_folder = "inputfiles"
 output_folder = "outputfiles"
-filename = "d_pet_pictures.txt"
-filename = "a_example.txt"
+filename = "e_shiny_selfies.txt"
 
 
 def main():
@@ -19,12 +20,14 @@ def main():
     collection = Collection()
     read_file(input, collection)
 
-    tuples = []
+    manager = multiprocessing.Manager()
+
+    tuples = manager.list()
     threads = []
 
     for difference in range(0, 30):
         # difference_function(collection, tuples, difference)
-        thread = Thread(target=difference_function, args=(collection.get_array().copy(), tuples, difference,))
+        thread = multiprocessing.Process(target=difference_function, args=(collection.get_array().copy(), tuples, difference,))
         threads.append(thread)
 
     for t in threads:
@@ -34,6 +37,10 @@ def main():
         t.join()
 
     best_tuple = get_best_tuple(tuples)
+
+    if len(best_tuple) == 0:
+        print("Length is 0")
+
     print_tuple(best_tuple)
 
     slideshow = get_slideshow(collection.get_array().copy(),
@@ -56,7 +63,7 @@ def difference_function(collection, tuples, difference):
 
     best_tuple = ()
 
-    for searchlength in range(10, 500):
+    for searchlength in range(10, 120):
         for sort in range(0, 3):
             for merge_type in range(0, 2):
                 try:

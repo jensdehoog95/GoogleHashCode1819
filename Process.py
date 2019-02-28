@@ -31,7 +31,9 @@ def setup_slideshow(slides, searchlength, difference):
 
         best_slide = 0
         best_val = 10000
+        # print("Searchlength: ", searchlength)
         for i in range(searchlength):
+            # print(i)
             if(i>=len(slides)):
                 break
 

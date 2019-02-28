@@ -34,7 +34,7 @@ def merge_vertical_pictures_high(vertical_pictures):
     merged_pictures = []
     while len(vertical_pictures) > 1:
         v1 = vertical_pictures.pop(0)
-        v2 = vertical_pictures.pop(1)
+        v2 = vertical_pictures.pop(0)
 
         slide = Slide(v1, v2)
         merged_pictures.append(slide)
